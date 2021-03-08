@@ -16,7 +16,7 @@ sem_t s2;
 sem_t s3;
 sem_t s4;
 
-
+// Function declaration
 void sighup(); 
 void sigint(); 
 void sigquit(); 
@@ -46,7 +46,7 @@ void Alert_Doctor()
 				} 
 				  
   
-			else 
+			else                                  //parent
 				{ 
 				printf("\nPARENT: sending SIGHUP\n\n");  
 				kill(pid, SIGHUP); 
@@ -191,7 +191,7 @@ void* patient4(void* pv)
 
 
 
-
+// Final report for Patient1
 void Get_Report1()
 { 
   printf("\n \n \nFinal Report\n");
@@ -211,6 +211,8 @@ void Get_Report1()
 
 }
 
+
+// Final report for Patient2
 void Get_Report2()
 {
   printf("\n \n \nFinal Report\n");
@@ -228,6 +230,9 @@ void Get_Report2()
   printf("Doctor suggestion :%s\n",D_Suggetion);
 
 }
+
+
+// Final report for Patient3
 void Get_Report3()
 {
   printf("\n \n \nFinal Report\n");
@@ -245,6 +250,9 @@ char D_Suggetion[]="Patient is in a critical situation";
   printf("Doctor suggestion :%s\n",D_Suggetion);
 
 }
+
+
+// Final report for Patient4
 void Get_Report4()
 {
   printf("\n \n \nFinal Report\n");
@@ -269,10 +277,13 @@ void Get_Report4()
 int main()
 {
 	pthread_t pt1,pt2,pt3,pt4;	//thread handle
+	//initializing semaphores
 	sem_init(&s1,0,1);
 	sem_init(&s2,0,0);
 	sem_init(&s3,0,0);
 	sem_init(&s4,0,0);
+	//Creating threads
+	
 	pthread_create(&pt1,NULL,patient1,NULL);
 	
 	pthread_create(&pt2,NULL,patient2,NULL);
@@ -281,16 +292,22 @@ int main()
 	
 	pthread_create(&pt4,NULL,patient4,NULL);
 	
+	//Joining Threads
 	pthread_join(pt1,NULL);
 	pthread_join(pt2,NULL);
 	pthread_join(pt3,NULL);
 	pthread_join(pt4,NULL);
+	
+	//Destroying semaphore
 	sem_destroy(&s1);
 	sem_destroy(&s2);
 	sem_destroy(&s3);
 	sem_destroy(&s4);
+	
+	//Destroying mutex
 	pthread_mutex_destroy(&m1);
-	printf("Thank you for the visit\n");
+
+	printf("\nThank you for the visit\n Please Visit again\n");
 	
 	
 	return 0;	//exit(0);
