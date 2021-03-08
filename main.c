@@ -63,7 +63,7 @@ void Alert_Doctor()
 		}
 		
 
-   
+// Sedning Signal
 void sighup() 
   
 { 
@@ -84,7 +84,9 @@ void sigquit()
 
 }  
 	
-
+// To check the Breathing rate and Heart beat rate.
+// Normal value for Heart beat rate - 60 BPM to 100 BPM
+//Normal value for Breathing rate - 12 BPM to 20 BPM
  
 int CheckVitals( int Breathing_rate, int Heart_beat)
 {
@@ -113,14 +115,14 @@ int CheckVitals( int Breathing_rate, int Heart_beat)
 	
 
 
-
+// Data for Patient1
 void* patient1(void* pv)
 {
 	sem_wait(&s1);
 	pthread_mutex_lock(&m1);
 	char str[]= "Rakesh";
 	int IDn= 785;
-	printf("\nPatient name : %s \n Patient ID : %d", str,IDn);
+	printf("\nPatient 1\n");
 	CheckVitals(15,65);
 	Get_Report1();
 	
@@ -132,13 +134,14 @@ void* patient1(void* pv)
 	//pthread_exit(NULL);
 }
 
+// Data for Patient2
 void* patient2(void* pv)
 {
 	sem_wait(&s2);
 pthread_mutex_lock(&m1);
 	char str[]= "Vijay";
 	int IDn= 788;
-	printf("\nPatient name : %s \n Patient ID : %d", str,IDn);
+	printf("\nPatient 2\n");
 	CheckVitals(10,110);
 	Get_Report2();
 	
@@ -149,13 +152,14 @@ pthread_mutex_lock(&m1);
 	//pthread_exit(NULL);
 }
 
+// Data for Patient3
 void* patient3(void* pv)
 {
 	sem_wait(&s3);
 	pthread_mutex_lock(&m1);
 	char str[]= "Vikram";
 	int IDn= 790;
-	printf("\nPatient name : %s \n Patient ID : %d", str,IDn);
+	printf("\nPatient 3\n");
 	CheckVitals(25,50);
 	Get_Report3();
 	
@@ -167,13 +171,14 @@ void* patient3(void* pv)
 	//pthread_exit(NULL);
 }
 
+// Data for Patient4
 void* patient4(void* pv)
 {
 	sem_wait(&s4);
 	pthread_mutex_lock(&m1);
 	char str[]= "Ajay";
 	int IDn= 795;
-	printf("Patient name : %s \n Patient ID : %d", str,IDn);
+	printf("\nPatient 4\n");
 	CheckVitals(14,80);
 	Get_Report4();
 	
@@ -188,7 +193,8 @@ void* patient4(void* pv)
 
 
 void Get_Report1()
-{
+{ 
+  printf("\n \n \nFinal Report\n");
   int Breathing_rate =15;
   int Heart_beat = 65;
   char P_name[]="Rakesh";
@@ -207,6 +213,7 @@ void Get_Report1()
 
 void Get_Report2()
 {
+  printf("\n \n \nFinal Report\n");
   int Breathing_rate =10;
   int Heart_beat = 110;
   char P_name[]="Vijay";
@@ -223,7 +230,7 @@ void Get_Report2()
 }
 void Get_Report3()
 {
-
+  printf("\n \n \nFinal Report\n");
   int Breathing_rate =25;
   int Heart_beat = 50;
   char P_name[]="Vikram";
@@ -240,12 +247,12 @@ char D_Suggetion[]="Patient is in a critical situation";
 }
 void Get_Report4()
 {
-
+  printf("\n \n \nFinal Report\n");
   int Breathing_rate =14;
   int Heart_beat = 80;
   char P_name[]="Ajay";
   int IDn = 795;
-  char D_Suggetion[]="Patient is normal";
+  char D_Suggetion []="Patient is normal";
   printf("\n************************************\n");
   printf("\n Patient Report \n");
   printf("Patient ID : %d\n", IDn);
